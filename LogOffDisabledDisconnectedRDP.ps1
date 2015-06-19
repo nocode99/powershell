@@ -12,8 +12,6 @@ Import-Module PSTerminalServices
 $Servers = Get-ADComputer -Filter {OperatingSystem -like "*server*"}
 $now = Get-Date
 $ADSearch = new-object DirectoryServices.DirectorySearcher([ADSI]””)
-#This is the username input to disconnect user sessions
-#$inputuser = Read-Host 'What is the username?'
 
 #loop through servers
 ForEach ($Server in $Servers) {
