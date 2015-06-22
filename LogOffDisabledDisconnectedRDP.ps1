@@ -15,7 +15,6 @@ $ADSearch = new-object DirectoryServices.DirectorySearcher([ADSI]””)
 
 #loop through servers
 ForEach ($Server in $Servers) {
-    #$ServerName = "qaiinsql01"
     $ServerName = $Server.Name
     #pings each server to make sure it's available
     If(Test-Connection -Cn $ServerName -BufferSize 16 -Count 1 -ea 0 -quiet) {
