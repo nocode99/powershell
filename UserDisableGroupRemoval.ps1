@@ -20,6 +20,7 @@ Function LogWrite {
 				
 foreach ($user in $file) {
 	#search for user in AD and see if they are enabled
+	$ADsearch = [adsisearcher]""
 	$ADsearch.filter = "(&(objectClass=user)(sAMAccountName=$user))"
     $ADfind = $ADsearch.findOne()
     $userAC = $ADfind.Properties.useraccountcontrol
