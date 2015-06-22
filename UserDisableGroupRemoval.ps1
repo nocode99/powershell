@@ -1,3 +1,8 @@
+#Script will read through a file for user user
+#each user will then be set to a disabled account
+#moved into the disabled OU
+#and remove all group memberships 
+
 Import-Module ActiveDirectory
 
 $userList = "c:\admin\userdisable.txt"
