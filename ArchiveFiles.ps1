@@ -16,6 +16,7 @@ $archiveList = "FilesToBeArchived.txt"
 $destinationPath = "\\remoteServer\Backup\InContact\"
 $now = get-date
 $log = "D:\FTPS\archive\log.txt"
+$logfiles = "d:\ftps\logs\"
 $7zip = "C:\Program Files\7-Zip\7z.exe"
 $month = $now.addmonths(-2)
 $year = $month.Year
@@ -115,6 +116,12 @@ Function MoveZipFiles
         Move-Item -LiteralPath "$archivepath$_" -Destination "$DestinationPath$_"
     }
     LogWrite "Moving $archivepath$_ to remote backup"
+}
+
+#Delete old WinSCP logs older than 30 days
+Function DeleteOldLogs
+{
+    Get-Childitem -Path $logfiles | where-object { (New-TimeSpan -Start $_.CreationTime -End $now).Days -gt 30 } | foreach-object { Remove-Item "$logfiles$_" }
 }
 
 #******************MAIN******************
